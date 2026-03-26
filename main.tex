@@ -7,11 +7,26 @@
 \usepackage{hyperref}
 \usepackage{subfiles}
 % \usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\normalfont\Large} % Format of the section title (font, size, weight)
+  {\thesection}                % How the section number is displayed
+  {1em}                        % Horizontal space between number and title
+  {}                           % Commands before the section title
+  [{\titlerule[0.8pt]}]        % Commands after the section title (here, the horizontal rule)
 
 % \setlength{\parindent}{0pt}
 \setlist{nolistsep,noitemsep}
 
+\pagestyle{fancy}
+\rhead{Curriculum Vitae}
+\lhead{Liam Dubay}
+
 \begin{document}
+
+\thispagestyle{plain} % fancy header only on first page
 
 \begin{center}
     {\huge Liam Dubay} \\
@@ -28,10 +43,14 @@
 
 \subfile{research.tex}
 
-\filbreak
+\subfile{publications}
+
+\subfile{talks.tex}
+
+% \filbreak
 \subfile{teaching.tex}
 
-\filbreak
+% \filbreak
 \subfile{outreach.tex}
 
 \subfile{service.tex}
