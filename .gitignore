@@ -1,8 +1,12 @@
 # Mac nonsense
 **.DS_Store
+
 # Tex files
 *.aux
 *.log
 *.pdf
 *.out
+
+# IDE
+.vscode
 
