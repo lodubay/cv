@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: |
           cd ./main
-          make cv.pdf
+          make
           mv cv.pdf ../website
           make clean
           cd ../
