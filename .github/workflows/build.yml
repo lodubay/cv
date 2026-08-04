@@ -17,6 +17,10 @@ jobs:
   build:
     name: Compile and Push
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pages: write
 
     steps:
       - name: Install PDFLaTeX
