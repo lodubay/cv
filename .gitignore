@@ -1,3 +1,7 @@
 # Mac nonsense
 **.DS_Store
+# Tex files
+*.aux
+*.log
+*.out
 
