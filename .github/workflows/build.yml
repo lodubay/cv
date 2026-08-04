@@ -1,0 +1,58 @@
+# This workflow compiles the LaTeX files in the root of this repository into
+# vita.pdf and pushed it to the website branch.
+# Copied from James Johnson (github.com/giganano/vita)
+
+name: Build CV
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Compile and Push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install PDFLaTeX
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install texlive-latex-base
+          sudo apt-get install texlive-latex-extra
+
+      - name: Checkout main
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          path: ./main
+
+      - name: Checkout website
+        uses: actions/checkout@v3
+        with:
+          ref: website
+          path: ./website
+
+      - name: Compile
+        shell: bash
+        run: |
+          cd ./main
+          make cv.pdf
+          mv cv.pdf ../website
+          make clean
+          cd ../
+
+      - name: Push
+        shell: bash
+        run: |
+          cd ./website
+          git config --global user.name "Liam Dubay"
+          git config --global user.email "liam.dubay@gmail.com"
+          git add cv.pdf
+          git commit -m "[auto] ci: cv recompiled from main branch"
+          git push -u origin website
